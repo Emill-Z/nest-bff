@@ -1,4 +1,6 @@
+I want to remove it.
 {
   "singleQuote": true,
   "trailingComma": "all"
+  "tabWidth": 4
 }
