@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 
-@Controller('campaign')
+@Controller('campaigns')
 export class CampaignController {
 
     constructor(
