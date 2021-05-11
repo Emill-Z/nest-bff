@@ -1,10 +1,10 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { CampaignI } from 'src/common/models/campaigns';
+import { Campaign } from 'src/common/models/campaign';
 import { AxiosResponse } from 'axios';
 
 @Injectable()
-export class CampaignsService {
+export class CampaignService {
 
     // Just for example
     private readonly URL: string = 'https://jsonplaceholder.typicode.com';
@@ -13,7 +13,7 @@ export class CampaignsService {
         private http: HttpService,
     ) { }
 
-    public getAll(): Observable<AxiosResponse<CampaignI[]>> {
+    public getAll(): Observable<AxiosResponse<Campaign[]>> {
         return this.http.get(`${this.URL}/posts`);
     }
 }
