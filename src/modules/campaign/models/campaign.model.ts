@@ -1,3 +1,3 @@
 export interface Campaign {
-  id: number;
+    id: number;
 }

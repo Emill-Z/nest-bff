@@ -1,3 +1,4 @@
+import { UnauthorizedException } from '@nestjs/common';
 import { Headers } from '../models/headers';
 
 /**
@@ -15,5 +16,11 @@ export function getHeaders(token: string): Headers {
  * @returns token string
  */
 export function getBearerToken(authorizationField: string): string {
-    return authorizationField.replace('Bearer ', '');
+    const token = authorizationField?.replace('Bearer', '')?.trim();
+
+    if (!token) {
+        throw new UnauthorizedException();
+    }
+
+    return token;
 }
