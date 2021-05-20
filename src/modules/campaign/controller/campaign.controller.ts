@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { CampaignService } from '../services/campaign.service';
 import { Headers, Query } from '@nestjs/common';
 import { getBearerToken } from 'src/common/utils/headers-tools';
@@ -13,16 +13,23 @@ export class CampaignController {
 
     @Get()
     public async getAll(@Headers('Authorization') auth: string): Promise<Campaign[]> {
-        const token = getBearerToken(auth);
-        return this.campaignService.getAll(token);
+        return this.campaignService.getAll(getBearerToken(auth));
     }
 
     @Get('/test')
     public async test(
         @Headers('Authorization') auth: string,
         @Query() query: { postId: string },
-    ): Promise<unknown[]> { // @TODO: replace unknown into correct interface
-        const token = getBearerToken(auth);
-        return this.campaignService.queryWithParams(query, token);
+    ): Promise<unknown[]> { // @TODO: replace unknown into correct interface. Now it is just example
+        return this.campaignService.queryWithParams(query, getBearerToken(auth));
+    }
+
+    @Get(':id')
+    public findOne(
+        @Headers('Authorization') auth: string,
+        @Param() params: { id: number }
+    ): Promise<Campaign[]> {
+        console.log(params.id);
+        return this.campaignService.findOne(getBearerToken(auth));
     }
 }
