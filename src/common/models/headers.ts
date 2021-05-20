@@ -1,3 +1,3 @@
-export interface Headers {
-    Authorization: string;
+export interface Header {
+    authorization: string;
 }
