@@ -1,5 +1,5 @@
 import { UnauthorizedException } from '@nestjs/common';
-import { Headers } from '../models/headers';
+import { Headers } from '../../models/headers';
 
 /**
  * @param token

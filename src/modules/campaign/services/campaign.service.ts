@@ -1,8 +1,8 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { getHeaders } from 'src/common/utils/headers-tools';
-import { catchError, map } from 'rxjs/operators';
 import { handleResponseErrors } from 'src/common/services/handle-response-errors';
+import { getHeaders } from 'src/common/utils/headers/headers-tools';
+import { catchError, map } from 'rxjs/operators';
 import { Campaign } from '../models/campaign.model';
 import * as DataCampaigns from '../../../common/mocks/data-campaigns.json';
 import { of } from 'rxjs';
@@ -17,7 +17,7 @@ export class CampaignService {
         private http: HttpService,
     ) { }
 
-    public getAll(token: string): Promise<Campaign[]> {
+    public findAll(token: string): Promise<Campaign[]> {
         const data = JSON.parse(JSON.stringify(DataCampaigns));
 
         return of(data.result.indexedPage.items).toPromise();
@@ -32,7 +32,7 @@ export class CampaignService {
         // ).toPromise();
     }
 
-    public findOne(token: string): Promise<Campaign[]> {
+    public findOne(token: string): Promise<Campaign> {
         const data = JSON.parse(JSON.stringify(DataCampaigns));
 
         return of(data.result.indexedPage.items[0]).toPromise();

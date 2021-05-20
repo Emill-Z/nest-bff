@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { CampaignService } from '../services/campaign.service';
 import { Headers, Query } from '@nestjs/common';
-import { getBearerToken } from 'src/common/utils/headers-tools';
+import { getBearerToken } from 'src/common/utils/headers/headers-tools';
 import { Campaign } from '../models/campaign.model';
 
 @Controller('campaigns')
@@ -12,8 +12,8 @@ export class CampaignController {
     ) { }
 
     @Get()
-    public async getAll(@Headers('Authorization') auth: string): Promise<Campaign[]> {
-        return this.campaignService.getAll(getBearerToken(auth));
+    public async findAll(@Headers('Authorization') auth: string): Promise<Campaign[]> {
+        return this.campaignService.findAll(getBearerToken(auth));
     }
 
     @Get('/test')
@@ -28,7 +28,7 @@ export class CampaignController {
     public findOne(
         @Headers('Authorization') auth: string,
         @Param() params: { id: number }
-    ): Promise<Campaign[]> {
+    ): Promise<Campaign> {
         console.log(params.id);
         return this.campaignService.findOne(getBearerToken(auth));
     }
