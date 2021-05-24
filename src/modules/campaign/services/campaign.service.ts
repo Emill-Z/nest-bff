@@ -13,8 +13,9 @@ export class CampaignService {
         private http: HttpService,
     ) { }
 
-    public findAll(auth: string): Promise<Campaign[]> {
+    public findAll(params: Record<string, unknown>, auth: string): Promise<Campaign[]> {
         const config: AxiosRequestConfig = {
+            params,
             headers: { Authorization: auth }
         };
 

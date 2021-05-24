@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CampaignService } from '../services/campaign.service';
 import { Headers } from '@nestjs/common';
 import { Campaign } from '../models/campaign.model';
@@ -12,8 +12,11 @@ export class CampaignController {
     ) { }
 
     @Get()
-    public async findAll(@Headers() { authorization }: Header): Promise<Campaign[]> {
-        return this.campaignService.findAll(authorization);
+    public async findAll(
+        @Headers() { authorization }: Header,
+        @Query() query: Record<string, unknown>,
+    ): Promise<Campaign[]> {
+        return this.campaignService.findAll(query, authorization);
     }
 
     @Get(':id')
