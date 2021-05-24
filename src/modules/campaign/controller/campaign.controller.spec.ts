@@ -22,7 +22,7 @@ describe('CampaignController', () => {
 
             jest.spyOn(campaignController, 'findAll').mockImplementation(() => result as never);
 
-            expect(await campaignController.findAll(null)).toBe(result);
+            expect(await campaignController.findAll(null, {})).toBe(result);
         });
 
         it('should return an campaign', async () => {
