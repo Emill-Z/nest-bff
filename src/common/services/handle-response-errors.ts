@@ -8,7 +8,7 @@ interface ResponseError {
     }
 }
 
-export function handleResponseErrors(error: ResponseError): Observable<never> {
+export function handleResponseError(error: ResponseError): Observable<never> {
     if (!(error?.response)) {
         return throwError(new HttpException({
             status: HttpStatus.INTERNAL_SERVER_ERROR,
